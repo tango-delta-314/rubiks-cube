@@ -1,1 +1,1 @@
-from .sticker import Sticker
+from .sticker import Sticker, apply_sticker_move
