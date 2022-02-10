@@ -41,4 +41,4 @@ def generate_geo_moves():
     return dict(zip(keys, moves))
 
 
-geo_moves = generate_geo_moves()
+all_moves = generate_geo_moves()
