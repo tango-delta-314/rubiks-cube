@@ -1,7 +1,6 @@
-from colors import facet_color
+from .colors import facet_color
 
-
-SOLVED_CUBE = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
+SOLVED_CUBE = ["U"]*9 + ["R"]*9 + ["F"]*9 + ["D"]*9 + ["L"]*9 + ["B"]*9
 
 
 class FacetCube():
@@ -39,5 +38,7 @@ class FacetCube():
         draw(36, 3, 0)
         draw(45, 3, 9)
 
+        print()
         for i in canvas:
             print(''.join(i))
+        print()

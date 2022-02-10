@@ -1,2 +1,2 @@
-from .sticker import Sticker, apply_sticker_move
+from .sticker import Sticker
 from .cube import Cube
