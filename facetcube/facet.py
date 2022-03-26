@@ -1,6 +1,11 @@
 from .colors import facet_color
+from manipulation import apply_geo_moves
 
 SOLVED_CUBE = ["U"]*9 + ["R"]*9 + ["F"]*9 + ["D"]*9 + ["L"]*9 + ["B"]*9
+
+
+def get_facelet(face, i):
+    return "URFDLB".index(face) * 9 + (i-1)
 
 
 class FacetCube():
@@ -42,3 +47,24 @@ class FacetCube():
         for i in canvas:
             print(''.join(i))
         print()
+
+
+def geo_cube_to_facet_cube(cube_stickers):
+    str_cube = [' ']*54
+
+    def fill_face(stickers, idx):
+        stickers = sorted(stickers, key = lambda p: p.current.x)
+        stickers = sorted(stickers, key = lambda p: p.current.z)
+
+        for s in stickers:
+            str_cube[idx] = s.get_target_face()
+            idx += 1
+
+    face_rotating_moves = ["", "y x", "x", "x2", "y' x", "y2 x"]
+
+    for i, moves in enumerate(face_rotating_moves):
+        tmp = apply_geo_moves(cube_stickers, moves)
+        t = [i for i in tmp if i.get_current_face() == "U"]
+        fill_face(t, i * 9)
+
+    return FacetCube(str_cube)
