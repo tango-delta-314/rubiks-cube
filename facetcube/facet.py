@@ -46,7 +46,7 @@ class FacetCube():
         print()
         for i in canvas:
             print(''.join(i))
-        print()
+        print(f'{facet_color["F"]} ') # Reset terminal
 
 
 def geo_cube_to_facet_cube(cube_stickers):

@@ -1,1 +1,1 @@
-from .dfs import solve_dfs
+from .dfs import solve

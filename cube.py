@@ -4,8 +4,9 @@ from facetcube import FacetCube
 from manipulation import apply_geo_moves, apply_facet_moves
 from facetcube import geo_cube_to_facet_cube
 from facetcube.facet import SOLVED_CUBE
-from solvers import solve_dfs
+from solvers import solve
 from solvers.firstblock import first_block_simple_solver
+from maskedcube import get_masked_first_block_cube
 
 
 parser = argparse.ArgumentParser()
@@ -26,27 +27,30 @@ def run_demo():
     if not moves:
         return
 
-    # Apply the moves geometrically (inefficient)
-    stickers = apply_geo_moves(cube.stickers, moves)
-    cube_after = Cube(stickers)
-
     # Apply the moves based on the facet move map.
     print("Modify the original cube using facet moves:")
     fc = apply_facet_moves(FacetCube().cube, moves)
     fc_after = FacetCube(fc)
     fc_after.print_cube() # Print the modified cube.
 
+    # Test the masking.
+    print('Testing masking of the first block pieces.')
+    print()
+    cube = get_masked_first_block_cube(moves)
+    fc_masked = FacetCube(cube)
+    fc_masked.print_cube()
+
     # Test the solver
-    solution_dfs = solve_dfs(
+    print('Testing the basic first block solver')
+    solution = solve(
         first_block_simple_solver,
         fc,
-        "",
         3
     )
 
     print()
-    print('DFS Solution:')
-    print(solution_dfs)
+    print('Solution:')
+    print(solution)
 
 
 if __name__ == "__main__":
