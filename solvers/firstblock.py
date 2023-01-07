@@ -1,6 +1,9 @@
 from itertools import chain
 from facetcube import get_facelet as gf
+from maskedcube import create_indexed_cube, mask_cube
+from pruning.table import generate_pruning_table
 from .solver import Solver
+
 
 # Define solved block and candidate moves
 first_block_pieces = [
@@ -27,4 +30,21 @@ def first_block_is_solved():
     return is_solved
 
 
-first_block_simple_solver = Solver(first_block_is_solved(), candidate_moves)
+def get_masked_first_block_cube(moves):
+    return mask_cube(create_indexed_cube(moves), first_block_pieces)
+
+
+PRUNING_DEPTH = 4
+
+pruning_table = generate_pruning_table(
+    [get_masked_first_block_cube("")],
+    PRUNING_DEPTH,
+    candidate_moves
+)
+
+first_block_solver = Solver(
+    first_block_is_solved(),
+    candidate_moves,
+    pruning_table,
+    PRUNING_DEPTH
+)

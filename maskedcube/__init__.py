@@ -1,1 +1,1 @@
-from .masked import get_masked_first_block_cube
+from .masked import create_indexed_cube, mask_cube

@@ -48,6 +48,9 @@ class FacetCube():
             print(''.join(i))
         print(f'{facet_color["F"]} ') # Reset terminal
 
+    def __str__(self):
+        return "".join(self.cube)
+
 
 def geo_cube_to_facet_cube(cube_stickers):
     str_cube = [' ']*54

@@ -5,8 +5,7 @@ from manipulation import apply_geo_moves, apply_facet_moves
 from facetcube import geo_cube_to_facet_cube
 from facetcube.facet import SOLVED_CUBE
 from solvers import solve
-from solvers.firstblock import first_block_simple_solver
-from maskedcube import get_masked_first_block_cube
+from solvers.firstblock import first_block_solver, get_masked_first_block_cube
 
 
 parser = argparse.ArgumentParser()
@@ -43,9 +42,9 @@ def run_demo():
     # Test the solver
     print('Testing the basic first block solver')
     solution = solve(
-        first_block_simple_solver,
-        fc,
-        3
+        first_block_solver,
+        cube,
+        8
     )
 
     print()
