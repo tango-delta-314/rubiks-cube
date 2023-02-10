@@ -46,7 +46,7 @@ async def run(websocket):
     moves = message.get("moves")
     solver = message.get("solver")
 
-    all_moves += moves
+    all_moves += f" {moves}"
     masked_cube = get_masked_first_block_cube(all_moves)
 
     solution = solve(
@@ -55,7 +55,7 @@ async def run(websocket):
       8
     )
 
-    await websocket.send(solution)
+    await websocket.send(solution or "solved!")
 
 
 async def main():
