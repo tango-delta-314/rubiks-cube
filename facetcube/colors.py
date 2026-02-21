@@ -8,6 +8,7 @@ yellow = colored.fg(184)
 red = colored.fg(1)
 green = colored.fg(2)
 grey = colored.fg(59)
+pink = colored.fg(169)
 
 facet_color = {
     "U": white,
@@ -16,5 +17,6 @@ facet_color = {
     "F": green,
     "R": red,
     "D": yellow,
-    "X": grey
+    "X": grey,
+    "o": pink
 }

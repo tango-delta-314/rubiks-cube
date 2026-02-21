@@ -1,0 +1,2 @@
+colored==1.4.3
+websockets==10.4
